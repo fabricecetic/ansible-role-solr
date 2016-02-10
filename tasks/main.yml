@@ -2,6 +2,11 @@
 - include: user.yml
   when: solr_create_user
 
+- name: Set solr_filename for Solr 5.x.
+  set_fact:
+    "solr_filename=solr-{{ solr_version }}"
+  when: "solr_version.split('.')[0] == '5'"
+
 - name: Set solr_filename for Solr 4.x.
   set_fact:
     "solr_filename=solr-{{ solr_version }}"
